@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta property="og:title" content="Un mensaje especial para Madelyn">
+    <meta property="og:description" content="Toca para ver la sorpresa que hice para ti ❤️">
+    <meta property="og:image" content="https://emojicdn.elk.sh/❤️">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Madelyn ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to bottom, #ff9a9e, #fecfef);
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            transition: background 0.5s ease; /* Transición suave de colores */
+            cursor: pointer;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            backdrop-filter: blur(5px);
+            border: 2px solid #fff;
+            position: relative;
+            z-index: 10;
+            cursor: default; /* El cursor vuelve a normal sobre la tarjeta */
+        }
+
+        h1 { color: #d63384; font-size: 2.5rem; margin-bottom: 10px; }
+        p { color: #555; font-size: 1.2rem; }
+
+        .btn {
+            background: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
+            transition: 0.3s;
+        }
+
+        .btn:hover { background: #ff758f; transform: scale(1.05); }
+
+        .heart-fall {
+            position: absolute;
+            top: -10%;
+            color: #ff4d6d;
+            font-size: 20px;
+            user-select: none;
+            z-index: 1;
+            animation: fall linear forwards;
+        }
+
+        /* Estilo para los mensajes flotantes al hacer clic */
+        .floating-text {
+            position: absolute;
+            color: white;
+            font-weight: bold;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+            pointer-events: none;
+            animation: floatUp 2s ease-out forwards;
+            z-index: 5;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(110vh) rotate(360deg); }
+        }
+
+        @keyframes floatUp {
+            0% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-100px); }
+        }
+    </style>
+</head>
+<body onclick="changeEverything(event)">
+
+    <div class="card" onclick="event.stopPropagation()">
+        <h1>¡Hola, Madelyncita!</h1>
+        <p>Eres mi persona favorita en el mundo.🌹</p>
+        <button class="btn" onclick="alert('Te amo mucho mi bebe nunca me faltes, eres la mejor, gracias por tu amor.')">Presiona aquí</button>
+        <p style="font-size: 0.8rem; color: #999; margin-top: 15px;">(Toca el fondo para ver qué pasa)</p>
+    </div>
+
+    <script>
+        const colors = ['#ff9a9e', '#a18cd1', '#fad0c4', '#ffecd2', '#84fab0', '#a1c4fd', '#fbc2eb'];
+        const phrases = ['Eres hermosa', 'Te extraño', 'Eres mi todo', 'Eres mi sol', 'Te amo', 'Madelyncita de mi vida ❤️', 'Siempre juntos tu y yo','Mi bebe pechocha',];
+
+        function changeEverything(e) {
+            // Cambiar color de fondo aleatorio
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            document.body.style.background = randomColor;
+
+            // Crear texto flotante donde hizo clic
+            const text = document.createElement('div');
+            text.className = 'floating-text';
+            text.innerText = phrases[Math.floor(Math.random() * phrases.length)];
+            text.style.left = e.clientX + 'px';
+            text.style.top = e.clientY + 'px';
+            
+            document.body.appendChild(text);
+
+            setTimeout(() => { text.remove(); }, 2000);
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-fall');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+            heart.style.opacity = Math.random();
+            heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 5000);
+        }
+
+        setInterval(createHeart, 300);
+    </script>
+
+</body>
+</html>
